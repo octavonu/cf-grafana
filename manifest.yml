@@ -1,7 +1,10 @@
 applications:
-- name: cfgrafana
+- name: grafana
   buildpack: binary_buildpack
-  memory: 64m
+  stack: cflinuxfs4
+  instances: 1
+  memory: 200M
+  disk_quota: 1200M
   command: './run.sh'
-  services:
-  - grafana-db # cf cs cleardb spark grafana-db
+  routes:
+    - route: grafana.cfapps.us10-001.hana.ondemand.com
